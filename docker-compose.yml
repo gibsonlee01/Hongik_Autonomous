@@ -1,0 +1,13 @@
+version: '3'
+services:
+  webots:
+    build: .
+    container_name: webots_sim
+    environment:
+    - DISPLAY=:0
+    - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${PWD}:/workspace  # 프로젝트 폴더를 마운트 (필요 시)
+    network_mode: host
+    restart: unless-stopped
